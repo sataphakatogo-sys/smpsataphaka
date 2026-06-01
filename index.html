@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SMP Negeri Satu Atap Haka - Membentuk Generasi Cerdas, Berkarakter, dan Berprestasi">
+    <meta name="keywords" content="SMP Negeri Satu Atap Haka, sekolah menengah pertama, pendidikan, Haka">
+    <title>SMP Negeri Satu Atap Haka</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        primary: { 50:'#eff6ff',100:'#dbeafe',200:'#bfdbfe',300:'#93c5fd',400:'#60a5fa',500:'#3b82f6',600:'#2563eb',700:'#1d4ed8',800:'#1e40af',900:'#1e3a5f',950:'#0f1d33' },
+                        accent: { 50:'#fffbeb',100:'#fef3c7',200:'#fde68a',300:'#fcd34d',400:'#fbbf24',500:'#f59e0b',600:'#d97706',700:'#b45309',800:'#92400e',900:'#78350f' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; }
+
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(30px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulse-glow { 0%,100% { box-shadow: 0 0 5px rgba(245,158,11,0.3); } 50% { box-shadow: 0 0 20px rgba(245,158,11,0.6); } }
+        @keyframes countUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        .animate-fadeInUp { animation: fadeInUp 0.7s ease-out forwards; }
+        .animate-fadeInLeft { animation: fadeInLeft 0.7s ease-out forwards; }
+        .animate-fadeInRight { animation: fadeInRight 0.7s ease-out forwards; }
+        .animate-scaleIn { animation: scaleIn 0.5s ease-out forwards; }
+        .animate-slideDown { animation: slideDown 0.3s ease-out forwards; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .animate-marquee { animation: marquee 30s linear infinite; }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+
+        /* Page transitions */
+        .page { display: none; opacity: 0; }
+        .page.active { display: block; animation: fadeInUp 0.5s ease-out forwards; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        .dark ::-webkit-scrollbar-track { background: #1e293b; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2563eb; }
+
+        /* Hero gradient overlay */
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(30,64,175,0.85) 0%, rgba(15,29,51,0.9) 50%, rgba(180,83,9,0.7) 100%);
+        }
+
+        /* Card hover */
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15); }
+        .dark .card-hover:hover { box-shadow: 0 20px 40px -10px rgba(0,0,0,0.4); }
+
+        /* Glass */
+        .glass { background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); }
+        .dark .glass { background: rgba(15,23,42,0.8); backdrop-filter: blur(12px); }
+
+        /* Notification bar */
+        .notification-bar { background: linear-gradient(90deg, #1e40af, #f59e0b); }
+
+        /* Gradient text */
+        .gradient-text { background: linear-gradient(135deg, #2563eb, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        /* Breadcrumb */
+        .breadcrumb a:hover { color: #2563eb; }
+
+        /* Toast */
+        .toast { transform: translateX(120%); transition: transform 0.3s ease; }
+        .toast.show { transform: translateX(0); }
+
+        /* Lightbox */
+        .lightbox { opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+        .lightbox.active { opacity: 1; pointer-events: all; }
+
+        /* Admin sidebar */
+        .admin-sidebar-item.active { background: rgba(59,130,246,0.1); border-right: 3px solid #3b82f6; }
+
+        /* Nav active */
+        .nav-link.active { color: #2563eb; border-bottom: 2px solid #f59e0b; }
+        .dark .nav-link.active { color: #60a5fa; }
+
+        /* Print */
+        @media print { .no-print { display: none !important; } }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-300">
+
+<!-- Toast Container -->
+<div id="toastContainer" class="fixed top-20 right-4 z-[9999] flex flex-col gap-2"></div>
+
+<!-- Notification Bar -->
+<div id="notifBar" class="notification-bar text-white text-sm py-2 relative overflow-hidden">
+    <div class="flex items-center justify-center gap-2 px-4">
+        <span class="iconify w-4 h-4 flex-shrink-0" data-icon="lucide:megaphone"></span>
+        <div class="overflow-hidden whitespace-nowrap max-w-4xl">
+            <span class="animate-marquee inline-block">
+                📢 Pendaftaran Peserta Didik Baru (SPMB) Tahun Ajaran 2026/2027 Telah Dibuka! &nbsp;&nbsp;|&nbsp;&nbsp;
+                🏆 Selamat datang calon siswa-siswi SMP Negeri Satu Atap Haka! &nbsp;&nbsp;|&nbsp;&nbsp;
+                📅 Penilaian Akhir Semester Genap dimulai tanggal 08 Juni 2026 &nbsp;&nbsp;|&nbsp;&nbsp;
+                🎉 SMP Negeri Satu Atap Haka meraih Akreditasi B! &nbsp;&nbsp;|&nbsp;&nbsp;
+            </span>
+        </div>
+        <button onclick="document.getElementById('notifBar').style.display='none'" class="absolute right-2 top-1/2 -translate-y-1/2 text-white/80 hover:text-white">
+            <span class="iconify w-4 h-4" data-icon="lucide:x"></span>
+        </button>
+    </div>
+</div>
+
+<!-- Navbar -->
+<nav id="navbar" class="sticky top-0 z-50 glass border-b border-slate-200 dark:border-slate-800 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-16 lg:h-18">
+            <!-- Logo -->
+            <a href="#" onclick="showPage('beranda')" class="flex items-center gap-3 flex-shrink-0">
+                <div class="w-10 h-10 bg-primary-700 dark:bg-primary-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="text-white font-bold text-sm">SMP</span>
+                </div>
+                <div class="hidden sm:block">
+                    <h1 class="text-sm lg:text-base font-bold text-primary-800 dark:text-primary-400 leading-tight">SMP Negeri Satu Atap</h1>
+                    <p class="text-[10px] lg:text-xs text-accent-600 dark:text-accent-500 font-semibold -mt-0.5">HAKA</p>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden lg:flex items-center gap-1">
+                <a href="#" onclick="showPage('beranda')" class="nav-link active px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors rounded-lg" data-page="beranda">Beranda</a>
+                <a href="#" onclick="showPage('profil')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors rounded-lg" data-page="profil">Profil</a>
+                <a href="#" onclick="showPage('akademik')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors rounded-lg" data-page="akademik">Akademik</a>
+                <a href="#" onclick="showPage('kesiswaan')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors rounded-lg" data-page="kesiswaan">Kesiswaan</a>
+                <a href="#" onclick="showPage('berita')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors rounded-lg" data-page="berita">Berita</a>
+                <a href="#" onclick="showPage('galeri')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors rounded-lg" data-page="galeri">Galeri</a>
+                <a href="#" onclick="showPage('spmb')" class="nav-link px-3 py-2 text-sm font-medium text-accent-600 dark:text-accent-500 font-semibold hover:text-accent-700 dark:hover:text-accent-400 transition-colors rounded-lg" data-page="spmb">SPMB</a>
+                <a href="#" onclick="showPage('kontak')" class="nav-link px-3 py-2 text-sm font-medium text-slate-700 dark:text-slate-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors rounded-lg" data-page="kontak">Kontak</a>
+            </div>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-2">
+                <!-- Search -->
+                <button onclick="toggleSearch()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <span class="iconify w-5 h-5 text-slate-600 dark:text-slate-400" data-icon="lucide:search"></span>
+                </button>
+                <!-- Dark Mode -->
+                <button onclick="toggleDarkMode()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <span class="iconify w-5 h-5 text-slate-600 dark:text-slate-400 dark:hidden" data-icon="lucide:moon"></span>
+                    <span class="iconify w-5 h-5 text-yellow-400 hidden dark:block" data-icon="lucide:sun"></span>
+                </button>
+                <!-- Admin -->
+                <button onclick="showPage('admin-login')" class="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-primary-700 hover:bg-primary-800 text-white text-sm font-medium rounded-lg transition-colors">
+                    <span class="iconify w-4 h-4" data-icon="lucide:shield"></span>
+                    <span class="hidden md:inline">Admin</span>
+                </button>
+                <!-- Hamburger -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <span id="menuIcon" class="iconify w-6 h-6 text-slate-700 dark:text-slate-300" data-icon="lucide:menu"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div id="searchBar" class="hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3">
+            <div class="relative">
+                <span class="iconify absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" data-icon="lucide:search"></span>
+                <input type="text" id="searchInput" placeholder="Cari berita, informasi, dokumen..." class="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent" onkeyup="handleSearch(event)">
+                <div id="searchResults" class="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-lg hidden z-50 max-h-64 overflow-y-auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+        <div class="px-4 py-3 space-y-1">
+            <a href="#" onclick="showPage('beranda');toggleMobileMenu()" class="block px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-slate-800 rounded-lg">Beranda</a>
+            <a href="#" onclick="showPage('profil');toggleMobileMenu()" class="block px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-slate-800 rounded-lg">Profil Sekolah</a>
+            <a href="#" onclick="showPage('akademik');toggleMobileMenu()" class="block px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-slate-800 rounded-lg">Akademik</a>
+            <a href="#" onclick="showPage('kesiswaan');toggleMobileMenu()" class="block px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-slate-800 rounded-lg">Kesiswaan</a>
+            <a href="#" onclick="showPage('berita');toggleMobileMenu()" class="block px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-slate-800 rounded-lg">Berita & Pengumuman</a>
+            <a href="#" onclick="showPage('galeri');toggleMobileMenu()" class="block px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-slate-800 rounded-lg">Galeri</a>
+            <a href="#" onclick="showPage('spmb');toggleMobileMenu()" class="block px-3 py-2.5 text-sm font-semibold text-accent-600 dark:text-accent-500 hover:bg-accent-50 dark:hover:bg-slate-800 rounded-lg">SPMB 2025/2026</a>
+            <a href="#" onclick="showPage('kontak');toggleMobileMenu()" class="block px-3 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-300 hover:bg-primary-50 dark:hover:bg-slate-800 rounded-lg">Kontak</a>
+            <div class="border-t border-slate-200 dark:border-slate-700 pt-2 mt-2">
+                <a href="#" onclick="showPage('admin-login');toggleMobileMenu()" class="flex items-center gap-2 px-3 py-2.5 text-sm font-medium text-primary-700 dark:text-primary-400 hover:bg-primary-50 dark:hover:bg-slate-800 rounded-lg">
+                    <span class="iconify w-4 h-4" data-icon="lucide:shield"></span> Login Admin
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- ===================== BERANDA ===================== -->
+<div id="page-beranda" class="page active">
+
+    <!-- Hero -->
+    <section class="relative min-h-[85vh] lg:min-h-[90vh] flex items-center overflow-hidden">
+        <img src="aset/satap haka.jpg" alt="SMP Negeri Satu Atap Haka" class="absolute inset-0 w-full h-full object-cover">
+        <div class="hero-overlay absolute inset-0"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-20 lg:py-32 w-full">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6 animate-fadeInUp">
+                    <span class="w-2 h-2 bg-accent-400 rounded-full animate-pulse"></span>
+                    <span class="text-white/90 text-xs font-medium">Akreditasi B — Tahun Ajaran 2025/2026</span>
+                </div>
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white leading-[1.05] tracking-tight mb-6 animate-fadeInUp delay-100">
+                    SMP Negeri<br>Satu Atap <span class="text-accent-400">Haka</span>
+                </h1>
+                <p class="text-lg lg:text-xl text-white/80 leading-relaxed mb-8 max-w-xl animate-fadeInUp delay-200">
+                    Membentuk generasi cerdas, berkarakter, dan berprestasi. Bersama kita wujudkan pendidikan berkualitas untuk masa depan yang lebih cerah.
+                </p>
+                <div class="flex flex-wrap gap-3 animate-fadeInUp delay-300">
+                    <a href="#" onclick="showPage('profil')" class="inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-semibold px-6 py-3.5 rounded-xl transition-all duration-300 shadow-lg shadow-accent-500/25 hover:shadow-accent-500/40">
+                        <span class="iconify w-5 h-5" data-icon="lucide:school"></span> Profil Sekolah
+                    </a>
+                    <a href="#" onclick="showPage('spmb')" class="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold px-6 py-3.5 rounded-xl border border-white/20 transition-all duration-300 animate-pulse-glow">
+                        <span class="iconify w-5 h-5" data-icon="lucide:user-plus"></span> Daftar SPMB
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-float">
+            <div class="w-8 h-12 border-2 border-white/40 rounded-full flex items-start justify-center p-2">
+                <div class="w-1 h-3 bg-white/60 rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sambutan Kepala Sekolah -->
+    <section class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-full h-full bg-accent-100 dark:bg-accent-900/30 rounded-2xl"></div>
+                    <img src="aset/kepsek.png" alt="Kepala Sekolah" class="relative w-full max-w-md mx-auto rounded-2xl shadow-xl object-cover aspect-[4/5]">
+                    <div class="absolute -bottom-4 -right-4 bg-primary-700 text-white rounded-xl p-4 shadow-lg">
+                        <span class="iconify w-8 h-8" data-icon="lucide:quote"></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">
+                        <span class="iconify w-3.5 h-3.5" data-icon="lucide:mic"></span> Sambutan
+                    </div>
+                    <h2 class="text-3xl lg:text-4xl font-bold tracking-tight mb-6">Sambutan Kepala Sekolah</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        Assalamualaikum Warahmatullahi Wabarakatuh,
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        Puji syukur kita panjatkan ke hadirat Tuhan Yang Maha Esa atas segala rahmat dan karunia-Nya. Selamat datang di website resmi SMP Negeri Satu Atap Haka. Kami berkomitmen untuk memberikan pendidikan terbaik yang tidak hanya mengedepankan kecerdasan akademik, tetapi juga pembentukan karakter dan moral peserta didik.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-6">
+                        Dengan dukungan guru-guru profesional dan fasilitas yang memadai, kami terus berinovasi dalam proses pembelajaran untuk mempersiapkan generasi masa depan yang siap menghadapi tantangan global.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <div>
+                            <h4 class="font-bold text-lg text-primary-800 dark:text-primary-400">Nasir S., S.Pd., M.Pd.</h4>
+                            <p class="text-sm text-slate-500 dark:text-slate-400">Kepala Sekolah</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistik -->
+    <section class="py-16 lg:py-20 bg-gradient-to-br from-primary-800 via-primary-900 to-primary-950 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-40 h-40 bg-accent-400 rounded-full blur-[80px]"></div>
+            <div class="absolute bottom-10 right-10 w-60 h-60 bg-primary-400 rounded-full blur-[100px]"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-white tracking-tight">Sekolah Dalam Angka</h2>
+                <p class="text-primary-200 mt-2">Data terkini tahun ajaran 2025/2026</p>
+            </div>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center card-hover">
+                    <div class="w-14 h-14 bg-accent-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify w-7 h-7 text-accent-400" data-icon="lucide:users"></span>
+                    </div>
+                    <div class="text-4xl font-extrabold text-white mb-1" data-count="342">55</div>
+                    <p class="text-primary-200 text-sm">Peserta Didik</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center card-hover">
+                    <div class="w-14 h-14 bg-accent-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify w-7 h-7 text-accent-400" data-icon="lucide:graduation-cap"></span>
+                    </div>
+                    <div class="text-4xl font-extrabold text-white mb-1" data-count="28">16</div>
+                    <p class="text-primary-200 text-sm">Guru & Tenaga Pendidik</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center card-hover">
+                    <div class="w-14 h-14 bg-accent-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify w-7 h-7 text-accent-400" data-icon="lucide:door-open"></span>
+                    </div>
+                    <div class="text-4xl font-extrabold text-white mb-1" data-count="12">3</div>
+                    <p class="text-primary-200 text-sm">Ruang Kelas</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center card-hover">
+                    <div class="w-14 h-14 bg-accent-500/20 rounded-xl flex items-center justify-center mx-auto mb-4">
+                        <span class="iconify w-7 h-7 text-accent-400" data-icon="lucide:trophy"></span>
+                    </div>
+                    <div class="text-4xl font-extrabold text-white mb-1" data-count="56">0</div>
+                    <p class="text-primary-200 text-sm">Prestasi Diraih</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Berita & Pengumuman -->
+    <section class="py-16 lg:py-24 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex items-end justify-between mb-10">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-accent-50 dark:bg-accent-900/30 text-accent-700 dark:text-accent-400 text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3">
+                        <span class="iconify w-3.5 h-3.5" data-icon="lucide:newspaper"></span> Terbaru
+                    </div>
+                    <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Berita & Pengumuman</h2>
+                </div>
+                <a href="#" onclick="showPage('berita')" class="hidden sm:inline-flex items-center gap-1 text-primary-600 dark:text-primary-400 text-sm font-medium hover:gap-2 transition-all">
+                    Lihat Semua <span class="iconify w-4 h-4" data-icon="lucide:arrow-right"></span>
+                </a>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <article class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover group">
+                    <div class="relative overflow-hidden aspect-video">
+                        <img src="aset/spmb.jpg" alt="Jalan-Santai" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-primary-600 text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">Pengumuman</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-2">
+                            <span class="iconify w-3.5 h-3.5" data-icon="lucide:calendar"></span> 01 Juni 2026
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2">Wujudkan Mimpi Bersama SMPN Satap Haka: Pendaftaran Siswa Baru 2026/2027 Resmi Dibuka!</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Hai calon pemimpin masa depan! Pencarian bakat-bakat luar biasa untuk tahun ajaran baru telah dimulai. Di [Nama Sekolah], kamu tidak hanya belajar di dalam kelas, tapi juga diajak berkolaborasi, berkreasi, dan mengembangkan potensi terbaikmu di lingkungan yang suportif dan modern.</p>
+                    </div>
+                </article>
+                <!-- Card 2 -->
+                <article class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover group">
+                    <div class="relative overflow-hidden aspect-video">
+                        <img src="aset/jalan santai.jpg" alt="Pertandingan" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-accent-500 text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">Kegiatan</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-2">
+                            <span class="iconify w-3.5 h-3.5" data-icon="lucide:calendar"></span> 11 Agustus 2025
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2">Jalan Santai Peringatan HUT RI Ke-80</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Seluruh warga sekolah mengikuti jalan santai peringatan HUR RI ke-80 di lapangan sepak bola Popalia."!".</p>
+                    </div>
+                </article>
+                <!-- Card 3 -->
+                <article class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover group">
+                    <div class="relative overflow-hidden aspect-video">
+                        <img src="aset/tim bola.jpg" alt="Bakti Sosial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 left-3 bg-green-600 text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">Kegiatan</span>
+                    </div>
+                    <div class="p-5">
+                        <div class="flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400 mb-2">
+                            <span class="iconify w-3.5 h-3.5" data-icon="lucide:calendar"></span> 10 Agustus 2025
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors line-clamp-2">Bakti Sosial dan Santunan Anak Yatim</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Momentum delapan dekade kemerdekaan Indonesia menjadi panggung bagi siswa SMP Negeri Satu Atap Haka untuk mengasah bakat dan mengharumkan nama sekolah dalam kompetisi HUT RI Ke-80.</p>
+                    </div>
+                </article>
+            </div>
+            <div class="sm:hidden text-center mt-6">
+                <a href="#" onclick="showPage('berita')" class="inline-flex items-center gap-1 text-primary-600 dark:text-primary-400 text-sm font-medium">Lihat Semua Berita <span class="iconify w-4 h-4" data-icon="lucide:arrow-right"></span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agenda Kegiatan -->
+    <section class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3">
+                    <span class="iconify w-3.5 h-3.5" data-icon="lucide:calendar-check"></span> Agenda
+                </div>
+                <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Agenda Kegiatan</h2>
+            </div>
+            <div class="max-w-3xl mx-auto space-y-4">
+                <div class="flex gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 card-hover">
+                    <div class="flex-shrink-0 w-16 text-center bg-primary-600 text-white rounded-xl p-2">
+                        <div class="text-2xl font-bold leading-none">04</div>
+                        <div class="text-xs mt-0.5">Mei</div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-1">Ujian Sekolah</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">04 - 09 Mei 2026 • Ruang Kelas Masing-masing</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 card-hover">
+                    <div class="flex-shrink-0 w-16 text-center bg-accent-500 text-white rounded-xl p-2">
+                        <div class="text-2xl font-bold leading-none">02</div>
+                        <div class="text-xs mt-0.5">Jun</div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-1">Pengumuman Kelulusan Siswa Kelas IX</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">02 Juni 2026 • Ruang Laboratorium Komputer</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 card-hover">
+                    <div class="flex-shrink-0 w-16 text-center bg-green-600 text-white rounded-xl p-2">
+                        <div class="text-2xl font-bold leading-none">08</div>
+                        <div class="text-xs mt-0.5">Jun</div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-1">Penilaian Akhir Semester Genap</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">08 - 13 Juni 2026 • Ruang Kelas Masing-Masing</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-100 dark:border-slate-700 card-hover">
+                    <div class="flex-shrink-0 w-16 text-center bg-red-500 text-white rounded-xl p-2">
+                        <div class="text-2xl font-bold leading-none">27</div>
+                        <div class="text-xs mt-0.5">Jun</div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-1">Penerimaan Rapor</h4>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">27 Juni 2026 • Ruang Kelas Masing-Masing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Singkat -->
+    <section class="py-16 lg:py-24 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex items-end justify-between mb-10">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-3">
+                        <span class="iconify w-3.5 h-3.5" data-icon="lucide:image"></span> Galeri
+                    </div>
+                    <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Galeri Kegiatan</h2>
+                </div>
+                <a href="#" onclick="showPage('galeri')" class="hidden sm:inline-flex items-center gap-1 text-primary-600 dark:text-primary-400 text-sm font-medium hover:gap-2 transition-all">
+                    Lihat Semua <span class="iconify w-4 h-4" data-icon="lucide:arrow-right"></span>
+                </a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="aspect-square rounded-xl overflow-hidden group cursor-pointer" onclick="openLightbox(this)">
+                    <img src="aset/supervisi.jpeg" alt="Kegiatan 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden group cursor-pointer md:col-span-2 md:row-span-2" onclick="openLightbox(this)">
+                    <img src="aset/tka.jpeg" alt="Kegiatan 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden group cursor-pointer" onclick="openLightbox(this)">
+                    <img src="aset/pengajian.jpg" alt="Kegiatan 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden group cursor-pointer" onclick="openLightbox(this)">
+                    <img src="aset/tarian.jpg" alt="Kegiatan 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden group cursor-pointer" onclick="openLightbox(this)">
+                    <img src="aset/senam.jpg" alt="Kegiatan 5" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak & Lokasi -->
+    <section class="py-16 lg:py-24 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Kontak & Lokasi</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2">Hubungi kami atau kunjungi sekolah kami</p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <span class="iconify w-6 h-6 text-primary-600 dark:text-primary-400" data-icon="lucide:map-pin"></span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Alamat</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Jl. Poros Haka No. 65, Desa Haka, Kecamatan Togo binongko, Kabupaten Wakatobi, Sulawesi Tenggara 93794</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <span class="iconify w-6 h-6 text-primary-600 dark:text-primary-400" data-icon="lucide:phone"></span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Telepon</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">0823-1717-7624</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <span class="iconify w-6 h-6 text-primary-600 dark:text-primary-400" data-icon="lucide:mail"></span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Email</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">sataphaka.togo@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-accent-100 dark:bg-accent-900/30 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <span class="iconify w-6 h-6 text-accent-600 dark:text-accent-400" data-icon="lucide:clock"></span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold mb-1">Jam Operasional</h4>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">Senin - Sabtu: 07.00 - 14.00 WITA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700 h-80 lg:h-auto">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d377.80055023347995!2d124.04256519141676!3d-6.0119653967740865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sid!2sus!4v1780280739201!5m2!1sid!2sus" width="600" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ===================== PROFIL ===================== -->
+<div id="page-profil" class="page">
+    <div class="bg-gradient-to-br from-primary-800 to-primary-950 text-white py-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <nav class="breadcrumb text-sm text-primary-200 mb-4 flex items-center gap-2">
+                <a href="#" onclick="showPage('beranda')" class="hover:text-white">Beranda</a>
+                <span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>
+                <span class="text-white">Profil Sekolah</span>
+            </nav>
+            <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight">Profil Sekolah</h1>
+            <p class="text-primary-200 mt-3 text-lg">Mengenal lebih dekat SMP Negeri Satu Atap Haka</p>
+        </div>
+    </div>
+
+    <!-- Sejarah -->
+    <section class="py-16 lg:py-20 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 bg-accent-50 dark:bg-accent-900/30 text-accent-700 dark:text-accent-400 text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">
+                        <span class="iconify w-3.5 h-3.5" data-icon="lucide:book-open"></span> Sejarah
+                    </div>
+                    <h2 class="text-3xl font-bold tracking-tight mb-6">Sejarah SMP Negeri Satu Atap Haka</h2>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        SMP Negeri Satu Atap Haka didirikan pada tahun 2014 berdasarkan Surat Keputusan Dinas Pendidikan Kabupaten Wakatobi. Berawal dari keprihatinan masyarakat terhadap minimnya akses pendidikan menengah pertama di wilayah Kecamatan Haka, sekolah ini didirikan sebagai satuan pendidikan baru di bawah program Satu Atap.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        Pada awal berdirinya, sekolah hanya memiliki 3 ruang kelas dengan 36 siswa dan 5 orang guru. Seiring berjalannya waktu, berkat dukungan pemerintah daerah, partisipasi masyarakat dan pemerintah pusat, SMP Negeri Satu Atap Haka terus berkembang hingga kini memiliki 3 ruang kelas, ruang administrasi, perpustakaan, Laboratorium IPA, Laboratorium Komputer dan UKS dengan fasilitas yang semakin memadai.
+                    </p>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Pada tahun 2022, sekolah berhasil meraih Akreditasi B dari BAN-SM, menandai komitmen dalam menyelenggarakan pendidikan berkualitas.
+                    </p>
+                </div>
+                <div>
+                    <img src="https://picsum.photos/seed/sekolah-building/600/500.jpg" alt="Gedung Sekolah" class="w-full rounded-2xl shadow-lg object-cover aspect-[4/3]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visi Misi -->
+    <section class="py-16 lg:py-20 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Visi dan Misi</h2>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-xl flex items-center justify-center mb-6">
+                        <span class="iconify w-7 h-7 text-primary-600 dark:text-primary-400" data-icon="lucide:eye"></span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-primary-800 dark:text-primary-400">Visi</h3>
+                    <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-lg italic">
+                        "Terwujudnya peserta didik yang cerdas, beriman, berakhlak mulia, dan berwawasan lingkungan serta berprestasi di tingkat regional maupun nasional."
+                    </p>
+                </div>
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="w-14 h-14 bg-accent-100 dark:bg-accent-900/30 rounded-xl flex items-center justify-center mb-6">
+                        <span class="iconify w-7 h-7 text-accent-600 dark:text-accent-400" data-icon="lucide:target"></span>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4 text-accent-700 dark:text-accent-400">Misi</h3>
+                    <ol class="space-y-3 text-slate-600 dark:text-slate-400">
+                        <li class="flex gap-3"><span class="w-6 h-6 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center text-xs font-bold text-accent-700 dark:text-accent-400 flex-shrink-0 mt-0.5">1</span>Melaksanakan pembelajaran yang aktif, kreatif, efektif, dan menyenangkan (PAKEM)</li>
+                        <li class="flex gap-3"><span class="w-6 h-6 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center text-xs font-bold text-accent-700 dark:text-accent-400 flex-shrink-0 mt-0.5">2</span>Membina peserta didik agar beriman, bertakwa, dan berakhlak mulia</li>
+                        <li class="flex gap-3"><span class="w-6 h-6 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center text-xs font-bold text-accent-700 dark:text-accent-400 flex-shrink-0 mt-0.5">3</span>Mengembangkan potensi siswa melalui kegiatan ekstrakurikuler</li>
+                        <li class="flex gap-3"><span class="w-6 h-6 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center text-xs font-bold text-accent-700 dark:text-accent-400 flex-shrink-0 mt-0.5">4</span>Menciptakan lingkungan sekolah yang bersih, sehat, dan asri</li>
+                        <li class="flex gap-3"><span class="w-6 h-6 bg-accent-100 dark:bg-accent-900/30 rounded-full flex items-center justify-center text-xs font-bold text-accent-700 dark:text-accent-400 flex-shrink-0 mt-0.5">5</span>Menjalin kerja sama yang harmonis dengan orang tua dan masyarakat</li>
+                    </ol>
+                </div>
+            </div>
+
+            <!-- Tujuan -->
+            <div class="mt-12 max-w-5xl mx-auto bg-gradient-to-br from-primary-700 to-primary-900 rounded-2xl p-8 lg:p-10 text-white">
+                <h3 class="text-2xl font-bold mb-6 text-center">Tujuan Sekolah</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="flex gap-3"><span class="iconify w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" data-icon="lucide:check-circle"></span>Meningkatkan rata-rata nilai ujian dan tingkat kelulusan</div>
+                    <div class="flex gap-3"><span class="iconify w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" data-icon="lucide:check-circle"></span>Menghasilkan lulusan yang berkarakter dan kompetitif</div>
+                    <div class="flex gap-3"><span class="iconify w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" data-icon="lucide:check-circle"></span>Meningkatkan prestasi di bidang akademik dan non-akademik</div>
+                    <div class="flex gap-3"><span class="iconify w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" data-icon="lucide:check-circle"></span>Mewujudkan sekolah berwawasan lingkungan (Adiwiyata)</div>
+                    <div class="flex gap-3"><span class="iconify w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" data-icon="lucide:check-circle"></span>Meningkatkan kompetensi pedagogik guru secara berkelanjutan</div>
+                    <div class="flex gap-3"><span class="iconify w-5 h-5 text-accent-400 flex-shrink-0 mt-0.5" data-icon="lucide:check-circle"></span>Membangun kerjasama yang erat dengan stakeholder pendidikan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Struktur Organisasi -->
+    <section class="py-16 lg:py-20 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Struktur Organisasi</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2">Susunan organisasi SMP Negeri Satu Atap Haka</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <!-- Kepsek -->
+                <div class="bg-primary-700 text-white rounded-xl p-4 text-center mb-2 shadow-lg">
+                    <p class="font-bold">Drs. Markus L. Bere, M.Pd.</p>
+                    <p class="text-xs text-primary-200">Kepala Sekolah</p>
+                </div>
+                <div class="w-0.5 h-8 bg-primary-300 dark:bg-primary-700"></div>
+                <!-- Wakil -->
+                <div class="bg-accent-500 text-white rounded-xl p-4 text-center mb-2 shadow-lg">
+                    <p class="font-bold">Yuliana B. Kewa, S.Pd.</p>
+                    <p class="text-xs text-accent-100">Wakil Kepala Sekolah</p>
+                </div>
+                <div class="w-0.5 h-8 bg-accent-300 dark:bg-accent-700"></div>
+                <!-- Divisi -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-3xl">
+                    <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 text-center">
+                        <p class="font-semibold text-sm">Ir. Yohanes P. Lede</p>
+                        <p class="text-xs text-slate-500">Kurikulum</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 text-center">
+                        <p class="font-semibold text-sm">Maria G. Hara, S.Pd.</p>
+                        <p class="text-xs text-slate-500">Kesiswaan</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-4 text-center">
+                        <p class="font-semibold text-sm">Dorkas K. Praing</p>
+                        <p class="text-xs text-slate-500">Sarana & Prasarana</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guru -->
+    <section class="py-16 lg:py-20 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold tracking-tight">Guru & Tenaga Kependidikan</h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 text-center card-hover">
+                    <img src="https://picsum.photos/seed/guru1/300/350.jpg" alt="Guru" class="w-full aspect-[3/4] object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold text-sm">Drs. Markus L. Bere, M.Pd.</h4>
+                        <p class="text-xs text-slate-500 mt-1">Kepala Sekolah</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 text-center card-hover">
+                    <img src="https://picsum.photos/seed/guru2/300/350.jpg" alt="Guru" class="w-full aspect-[3/4] object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold text-sm">Yuliana B. Kewa, S.Pd.</h4>
+                        <p class="text-xs text-slate-500 mt-1">Waka Kurikulum / B. Inggris</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 text-center card-hover">
+                    <img src="https://picsum.photos/seed/guru3/300/350.jpg" alt="Guru" class="w-full aspect-[3/4] object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold text-sm">Ir. Yohanes P. Lede</h4>
+                        <p class="text-xs text-slate-500 mt-1">Matematika</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 text-center card-hover">
+                    <img src="https://picsum.photos/seed/guru4/300/350.jpg" alt="Guru" class="w-full aspect-[3/4] object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold text-sm">Maria G. Hara, S.Pd.</h4>
+                        <p class="text-xs text-slate-500 mt-1">IPA / Waka Kesiswaan</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 text-center card-hover">
+                    <img src="https://picsum.photos/seed/guru5/300/350.jpg" alt="Guru" class="w-full aspect-[3/4] object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold text-sm">Samuel R. Ndilu, S.Pd.</h4>
+                        <p class="text-xs text-slate-500 mt-1">Bahasa Indonesia</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 text-center card-hover">
+                    <img src="https://picsum.photos/seed/guru6/300/350.jpg" alt="Guru" class="w-full aspect-[3/4] object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold text-sm">Dorkas K. Praing</h4>
+                        <p class="text-xs text-slate-500 mt-1">IPS / Sarpras</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 text-center card-hover">
+                    <img src="https://picsum.photos/seed/guru7/300/350.jpg" alt="Guru" class="w-full aspect-[3/4] object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold text-sm">Anastasia M. Ratu, S.Pd.</h4>
+                        <p class="text-xs text-slate-500 mt-1">Seni Budaya</p>
+                    </div>
+                </div>
+                <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 text-center card-hover">
+                    <img src="https://picsum.photos/seed/guru8/300/350.jpg" alt="Guru" class="w-full aspect-[3/4] object-cover">
+                    <div class="p-4">
+                        <h4 class="font-semibold text-sm">Dominikus P. Runga, S.Kom.</h4>
+                        <p class="text-xs text-slate-500 mt-1">TKJ / Informatika</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ===================== AKADEMIK ===================== -->
+<div id="page-akademik" class="page">
+    <div class="bg-gradient-to-br from-primary-800 to-primary-950 text-white py-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <nav class="breadcrumb text-sm text-primary-200 mb-4 flex items-center gap-2">
+                <a href="#" onclick="showPage('beranda')" class="hover:text-white">Beranda</a>
+                <span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span>
+                <span class="text-white">Akademik</span>
+            </nav>
+            <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight">Akademik</h1>
+            <p class="text-primary-200 mt-3 text-lg">Kurikulum dan program pembelajaran</p>
+        </div>
+    </div>
+
+    <section class="py-16 lg:py-20 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <!-- Kurikulum -->
+            <div class="mb-16">
+                <div class="inline-flex items-center gap-2 bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-400 text-xs font-semibold uppercase tracking-widest px-3 py-1.5 rounded-full mb-4">
+                    <span class="iconify w-3.5 h-3.5" data-icon="lucide:book-open"></span> Kurikulum
+                </div>
+                <h2 class="text-3xl font-bold tracking-tight mb-6">Kurikulum Merdeka</h2>
+                <p class="text-slate-600 dark:text-slate-400 leading-relaxed max-w-3xl mb-6">
+                    SMP Negeri Satu Atap Haka menerapkan Kurikulum Merdeka yang berpusat pada peserta didik. Kurikulum ini memberikan fleksibilitas kepada guru untuk merancang pembelajaran yang sesuai dengan kebutuhan dan konteks lokal siswa.
+                </p>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-primary-50 dark:bg-primary-900/20 rounded-2xl p-6 border border-primary-100 dark:border-primary-800">
+                        <span class="iconify w-8 h-8 text-primary-600 mb-3" data-icon="lucide:puzzle"></span>
+                        <h4 class="font-semibold mb-2">Projek Penguatan Profil Pelajar Pancasila (P5)</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Proyek interdisipliner untuk menguatkan karakter dan kompetensi abad 21</p>
+                    </div>
+                    <div class="bg-accent-50 dark:bg-accent-900/20 rounded-2xl p-6 border border-accent-100 dark:border-accent-800">
+                        <span class="iconify w-8 h-8 text-accent-600 mb-3" data-icon="lucide:brain"></span>
+                        <h4 class="font-semibold mb-2">Pembelajaran Berdiferensiasi</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Penyesuaian cara belajar sesuai kesiapan dan minat setiap siswa</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-6 border border-green-100 dark:border-green-800">
+                        <span class="iconify w-8 h-8 text-green-600 mb-3" data-icon="lucide:users"></span>
+                        <h4 class="font-semibold mb-2">Asesmen Formatif</h4>
+                        <p class="text-sm text-slate-600 dark:text-slate-400">Penilaian berkelanjutan untuk memantau perkembangan belajar siswa</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mata Pelajaran -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold tracking-tight mb-6">Mata Pelajaran</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-primary-600" data-icon="lucide:book-a"></span></span>Pendidikan Agama</div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-primary-600" data-icon="lucide:flag"></span></span>PKn</div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-primary-600" data-icon="lucide:languages"></span></span>Bahasa Indonesia</div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-accent-100 dark:bg-accent-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-accent-600" data-icon="lucide:calculator"></span></span>Matematika</div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-green-100 dark:bg-green-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-green-600" data-icon="lucide:flask-conical"></span></span>IPA</div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-purple-600" data-icon="lucide:globe"></span></span>IPS</div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-primary-600" data-icon="lucide:message-circle"></span></span>Bahasa Inggris</div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-pink-100 dark:bg-pink-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-pink-600" data-icon="lucide:music"></span></span>Seni Budaya</div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-orange-100 dark:bg-orange-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-orange-600" data-icon="lucide:dumbbell"></span></span>PJOK</div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-cyan-100 dark:bg-cyan-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-cyan-600" data-icon="lucide:wrench"></span></span>Prakarya</div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-indigo-600" data-icon="lucide:monitor"></span></span>Informatika</div>
+                    <div class="flex items-center gap-3 p-4 bg-slate-50 dark:bg-slate-800 rounded-xl"><span class="w-8 h-8 bg-teal-100 dark:bg-teal-900/30 rounded-lg flex items-center justify-center"><span class="iconify w-4 h-4 text-teal-600" data-icon="lucide:leaf"></span></span>Muatan Lokal</div>
+                </div>
+            </div>
+
+            <!-- Program Unggulan -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold tracking-tight mb-6">Program Unggulan</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gradient-to-br from-primary-700 to-primary-900 text-white rounded-2xl p-8">
+                        <span class="iconify w-10 h-10 text-accent-400 mb-4" data-icon="lucide:laptop-2"></span>
+                        <h4 class="text-xl font-bold mb-2">Literasi Digital</h4>
+                        <p class="text-primary-200 text-sm">Program penguatan kemampuan teknologi informasi dan literasi digital bagi seluruh peserta didik.</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-accent-600 to-accent-800 text-white rounded-2xl p-8">
+                        <span class="iconify w-10 h-10 text-white mb-4" data-icon="lucide:book-marked"></span>
+                        <h4 class="text-xl font-bold mb-2">Gerakan Literasi Sekolah (GLS)</h4>
+                        <p class="text-accent-100 text-sm">Kegiatan membaca 15 menit sebelum pembelajaran dimulai untuk menumbuhkan budaya literasi.</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-green-600 to-green-800 text-white rounded-2xl p-8">
+                        <span class="iconify w-10 h-10 text-green-200 mb-4" data-icon="lucide:trees"></span>
+                        <h4 class="text-xl font-bold mb-2">Sekolah Adiwiyata</h4>
+                        <p class="text-green-100 text-sm">Program sekolah berwawasan lingkungan untuk menanamkan kesadaran lingkungan hidup.</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-600 to-purple-800 text-white rounded-2xl p-8">
+                        <span class="iconify w-10 h-10 text-purple-200 mb-4" data-icon="lucide:heart-handshake"></span>
+                        <h4 class="text-xl font-bold mb-2">Penguatan Karakter</h4>
+                        <p class="text-purple-100 text-sm">Program pembiasaan dan keteladanan untuk membentuk karakter siswa yang berakhlak mulia.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jadwal & Kalender -->
+            <div class="grid lg:grid-cols-2 gap-8">
+                <div>
+                    <h2 class="text-2xl font-bold mb-6">Jadwal Pelajaran</h2>
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead>
+                                    <tr class="bg-primary-700 text-white">
+                                        <th class="px-4 py-3 text-left font-medium">Waktu</th>
+                                        <th class="px-4 py-3 text-left font-medium">Senin</th>
+                                        <th class="px-4 py-3 text-left font-medium">Selasa</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-200 dark:divide-slate-700">
+                                    <tr><td class="px-4 py-2.5 font-medium">07:00-08:20</td><td class="px-4 py-2.5">Matematika</td><td class="px-4 py-2.5">B. Indonesia</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-medium">08:20-09:40</td><td class="px-4 py-2.5">IPA</td><td class="px-4 py-2.5">B. Inggris</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-medium text-accent-600">09:40-10:00</td><td class="px-4 py-2.5 text-accent-600" colspan="2">Istirahat</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-medium">10:00-11:20</td><td class="px-4 py-2.5">B. Inggris</td><td class="px-4 py-2.5">IPS</td></tr>
+                                    <tr><td class="px-4 py-2.5 font-medium">11:20-12:40</td><td class="px-4 py-2.5">PKn</td><td class="px-4 py-2.5">Seni Budaya</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="p-3 bg-accent-50 dark:bg-accent-900/20 text-center">
+                            <a href="#" onclick="showToast('Dokumen jadwal lengkap dapat diunduh di bagian download.','info')" class="text-sm text-accent-700 dark:text-accent-400 font-medium flex items-center justify-center gap-1">
+                                <span class="iconify w-4 h-4" data-icon="lucide:download"></span> Download Jadwal Lengkap (PDF)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold mb-6">Kalender Akademik</h2>
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 space-y-4">
+                        <div class="flex items-center gap-3"><span class="w-3 h-3 bg-green-500 rounded-full"></span><div><p class="font-medium text-sm">Semester Ganjil</p><p class="text-xs text-slate-500">Jul 2024 - Des 2024</p></div></div>
+                        <div class="flex items-center gap-3"><span class="w-3 h-3 bg-blue-500 rounded-full"></span><div><p class="font-medium text-sm">Semester Genap</p><p class="text-xs text-slate-500">Jan 2025 - Jun 2025</p></div></div>
+                        <div class="flex items-center gap-3"><span class="w-3 h-3 bg-yellow-500 rounded-full"></span><div><p class="font-medium text-sm">UTS Genap</p><p class="text-xs text-slate-500">20 - 28 Maret 2025</p></div></div>
+                        <div class="flex items-center gap-3"><span class="w-3 h-3 bg-red-500 rounded-full"></span><div><p class="font-medium text-sm">UAS Genap</p><p class="text-xs text-slate-500">10 - 18 Juni 2025</p></div></div>
+                        <div class="flex items-center gap-3"><span class="w-3 h-3 bg-purple-500 rounded-full"></span><div><p class="font-medium text-sm">Pentasar Seni</p><p class="text-xs text-slate-500">1 Juni 2025</p></div></div>
+                        <div class="flex items-center gap-3"><span class="w-3 h-3 bg-orange-500 rounded-full"></span><div><p class="font-medium text-sm">Pelepasan Kelas IX</p><p class="text-xs text-slate-500">28 Juni 2025</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ===================== KESISWAAN ===================== -->
+<div id="page-kesiswaan" class="page">
+    <div class="bg-gradient-to-br from-primary-800 to-primary-950 text-white py-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <nav class="breadcrumb text-sm text-primary-200 mb-4 flex items-center gap-2">
+                <a href="#" onclick="showPage('beranda')" class="hover:text-white">Beranda</a>
+                <span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span><span class="text-white">Kesiswaan</span>
+            </nav>
+            <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight">Kesiswaan</h1>
+            <p class="text-primary-200 mt-3 text-lg">Kehidupan siswa dan kegiatan di SMP Negeri Satu Atap Haka</p>
+        </div>
+    </div>
+
+    <section class="py-16 lg:py-20 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <!-- OSIS -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold tracking-tight mb-6">Organisasi Siswa Intra Sekolah (OSIS)</h2>
+                <div class="bg-gradient-to-r from-primary-700 to-accent-600 rounded-2xl p-8 text-white mb-8">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <img src="https://picsum.photos/seed/osis-logo/200/200.jpg" alt="Logo OSIS" class="w-24 h-24 rounded-xl object-cover border-2 border-white/30">
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">OSIS SMP Negeri Satu Atap Haka</h3>
+                            <p class="text-white/80 mb-1">Periode 2024/2025</p>
+                            <p class="text-sm text-white/60">Bersatu, Berkarya, Berprestasi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-4 text-center border border-slate-200 dark:border-slate-700">
+                        <img src="https://picsum.photos/seed/osis1/100/100.jpg" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
+                        <p class="font-semibold text-sm">Umbu H. Praing</p><p class="text-xs text-slate-500">Ketua OSIS</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-4 text-center border border-slate-200 dark:border-slate-700">
+                        <img src="https://picsum.photos/seed/osis2/100/100.jpg" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
+                        <p class="font-semibold text-sm">Lidya M. Konda</p><p class="text-xs text-slate-500">Wakil Ketua</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-4 text-center border border-slate-200 dark:border-slate-700">
+                        <img src="https://picsum.photos/seed/osis3/100/100.jpg" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
+                        <p class="font-semibold text-sm">Rambu A. Luku</p><p class="text-xs text-slate-500">Sekretaris</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-xl p-4 text-center border border-slate-200 dark:border-slate-700">
+                        <img src="https://picsum.photos/seed/osis4/100/100.jpg" class="w-16 h-16 rounded-full mx-auto mb-2 object-cover">
+                        <p class="font-semibold text-sm">Maramba T. Rewa</p><p class="text-xs text-slate-500">Bendahara</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ekstrakurikuler -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold tracking-tight mb-6">Ekstrakurikuler</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 card-hover">
+                        <span class="iconify w-10 h-10 text-green-600 mb-3" data-icon="lucide:footprints"></span>
+                        <h4 class="font-semibold mb-1">Pramuka</h4>
+                        <p class="text-sm text-slate-500">Wajib bagi seluruh siswa kelas VII</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 card-hover">
+                        <span class="iconify w-10 h-10 text-red-600 mb-3" data-icon="lucide:heart-pulse"></span>
+                        <h4 class="font-semibold mb-1">PMR</h4>
+                        <p class="text-sm text-slate-500">Palang Merah Remaja</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 card-hover">
+                        <span class="iconify w-10 h-10 text-orange-600 mb-3" data-icon="lucide:dumbbell"></span>
+                        <h4 class="font-semibold mb-1">Voli & Sepak Bola</h4>
+                        <p class="text-sm text-slate-500">Olahraga prestasi</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 card-hover">
+                        <span class="iconify w-10 h-10 text-purple-600 mb-3" data-icon="lucide:music"></span>
+                        <h4 class="font-semibold mb-1">Seni Tari & Musik</h4>
+                        <p class="text-sm text-slate-500">Pelestarian budaya lokal</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 card-hover">
+                        <span class="iconify w-10 h-10 text-blue-600 mb-3" data-icon="lucide:book-a"></span>
+                        <h4 class="font-semibold mb-1">Karya Ilmiah Remaja</h4>
+                        <p class="text-sm text-slate-500">Pengembangan penelitian siswa</p>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700 card-hover">
+                        <span class="iconify w-10 h-10 text-accent-600 mb-3" data-icon="lucide:trophy"></span>
+                        <h4 class="font-semibold mb-1">Olimpiade Sains</h4>
+                        <p class="text-sm text-slate-500">Pembinaan Matematika & IPA</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prestasi -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold tracking-tight mb-6">Prestasi Siswa</h2>
+                <div class="space-y-4">
+                    <div class="flex gap-4 p-5 bg-accent-50 dark:bg-accent-900/20 rounded-xl border border-accent-200 dark:border-accent-800">
+                        <div class="w-12 h-12 bg-accent-500 text-white rounded-xl flex items-center justify-center flex-shrink-0 text-xl">🥇</div>
+                        <div><h4 class="font-semibold">Juara 1 Olimpiade Matematika Tingkat Kabupaten</h4><p class="text-sm text-slate-500 mt-1">Umbu H. Praing • April 2025</p></div>
+                    </div>
+                    <div class="flex gap-4 p-5 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div class="w-12 h-12 bg-slate-400 text-white rounded-xl flex items-center justify-center flex-shrink-0 text-xl">🥈</div>
+                        <div><h4 class="font-semibold">Juara 2 Lomba Cerdas Cermat IPS Kabupaten</h4><p class="text-sm text-slate-500 mt-1">Tim Kesiswaan • Maret 2025</p></div>
+                    </div>
+                    <div class="flex gap-4 p-5 bg-accent-50 dark:bg-accent-900/20 rounded-xl border border-accent-200 dark:border-accent-800">
+                        <div class="w-12 h-12 bg-accent-500 text-white rounded-xl flex items-center justify-center flex-shrink-0 text-xl">🥇</div>
+                        <div><h4 class="font-semibold">Juara 1 Lomba Baca Puisi Tingkat Kecamatan</h4><p class="text-sm text-slate-500 mt-1">Lidya M. Konda • Februari 2025</p></div>
+                    </div>
+                    <div class="flex gap-4 p-5 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700">
+                        <div class="w-12 h-12 bg-amber-600 text-white rounded-xl flex items-center justify-center flex-shrink-0 text-xl">🥉</div>
+                        <div><h4 class="font-semibold">Juara 3 Turnamen Voli Pelajar Kabupaten</h4><p class="text-sm text-slate-500 mt-1">Tim Voli SMPN Satu Atap Haka • Januari 2025</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tata Tertib -->
+            <div>
+                <h2 class="text-3xl font-bold tracking-tight mb-6">Tata Tertib Sekolah</h2>
+                <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+                    <ol class="space-y-3 text-sm text-slate-600 dark:text-slate-400">
+                        <li class="flex gap-3"><span class="w-6 h-6 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center text-xs font-bold text-primary-700 flex-shrink-0">1</span>Hadir di sekolah pukul 06.45 WITA, upacara dimulai pukul 07.00 WITA</li>
+                        <li class="flex gap-3"><span class="w-6 h-6 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center text-xs font-bold text-primary-700 flex-shrink-0">2</span>Memakai seragam lengkap sesuai jadwal yang ditentukan</li>
+                        <li class="flex gap-3"><span class="w-6 h-6 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center text-xs font-bold text-primary-700 flex-shrink-0">3</span>Menjaga kebersihan dan kerapian lingkungan sekolah</li>
+                        <li class="flex gap-3"><span class="w-6 h-6 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center text-xs font-bold text-primary-700 flex-shrink-0">4</span>Tidak membawa dan menggunakan HP saat jam pelajaran</li>
+                        <li class="flex gap-3"><span class="w-6 h-6 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center text-xs font-bold text-primary-700 flex-shrink-0">5</span>Sopan dan menghormati guru serta sesama siswa</li>
+                        <li class="flex gap-3"><span class="w-6 h-6 bg-primary-100 dark:bg-primary-900/30 rounded-full flex items-center justify-center text-xs font-bold text-primary-700 flex-shrink-0">6</span>Tidak melakukan tindak kekerasan, perundungan, atau diskriminasi</li>
+                    </ol>
+                    <div class="mt-4 pt-4 border-t border-slate-200 dark:border-slate-700 text-center">
+                        <a href="#" onclick="showToast('Dokumen tata tertib lengkap siap diunduh.','success')" class="text-sm text-primary-600 dark:text-primary-400 font-medium inline-flex items-center gap-1">
+                            <span class="iconify w-4 h-4" data-icon="lucide:download"></span> Download Tata Tertib Lengkap (PDF)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ===================== BERITA ===================== -->
+<div id="page-berita" class="page">
+    <div class="bg-gradient-to-br from-primary-800 to-primary-950 text-white py-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <nav class="breadcrumb text-sm text-primary-200 mb-4 flex items-center gap-2">
+                <a href="#" onclick="showPage('beranda')" class="hover:text-white">Beranda</a><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span><span class="text-white">Berita & Pengumuman</span>
+            </nav>
+            <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight">Berita & Pengumuman</h1>
+        </div>
+    </div>
+
+    <section class="py-16 lg:py-20 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <!-- Filter & Search -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                <div class="flex gap-2 flex-wrap">
+                    <button class="px-4 py-2 bg-primary-700 text-white text-sm font-medium rounded-lg" onclick="filterNews('all',this)">Semua</button>
+                    <button class="px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-primary-50" onclick="filterNews('pengumuman',this)">Pengumuman</button>
+                    <button class="px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-primary-50" onclick="filterNews('prestasi',this)">Prestasi</button>
+                    <button class="px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 hover:bg-primary-50" onclick="filterNews('kegiatan',this)">Kegiatan</button>
+                </div>
+                <div class="relative sm:ml-auto">
+                    <span class="iconify absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" data-icon="lucide:search"></span>
+                    <input type="text" placeholder="Cari berita..." class="pl-9 pr-4 py-2 w-full sm:w-64 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                </div>
+            </div>
+
+            <!-- News Grid -->
+            <div id="newsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <article class="news-card bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover group" data-category="pengumuman">
+                    <div class="relative overflow-hidden aspect-video"><img src="https://picsum.photos/seed/news1/600/400.jpg" alt="News" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><span class="absolute top-3 left-3 bg-primary-600 text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">Pengumuman</span></div>
+                    <div class="p-5"><div class="flex items-center gap-2 text-xs text-slate-500 mb-2"><span class="iconify w-3.5 h-3.5" data-icon="lucide:calendar"></span>15 Mei 2025</div><h3 class="font-semibold text-lg mb-2 group-hover:text-primary-600 transition-colors">Upacara Peringatan Hardiknas 2025</h3><p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Seluruh warga sekolah mengikuti upacara peringatan Hari Pendidikan Nasional dengan khidmat.</p></div>
+                </article>
+                <article class="news-card bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover group" data-category="prestasi">
+                    <div class="relative overflow-hidden aspect-video"><img src="https://picsum.photos/seed/news2/600/400.jpg" alt="News" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><span class="absolute top-3 left-3 bg-accent-500 text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">Prestasi</span></div>
+                    <div class="p-5"><div class="flex items-center gap-2 text-xs text-slate-500 mb-2"><span class="iconify w-3.5 h-3.5" data-icon="lucide:calendar"></span>10 Mei 2025</div><h3 class="font-semibold text-lg mb-2 group-hover:text-primary-600 transition-colors">Siswa Raih Emas Olimpiade Sains Kabupaten</h3><p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Umbu H. Praing berhasil meraih medali emas di bidang Matematika tingkat Kabupaten.</p></div>
+                </article>
+                <article class="news-card bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover group" data-category="kegiatan">
+                    <div class="relative overflow-hidden aspect-video"><img src="https://picsum.photos/seed/news3/600/400.jpg" alt="News" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><span class="absolute top-3 left-3 bg-green-600 text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">Kegiatan</span></div>
+                    <div class="p-5"><div class="flex items-center gap-2 text-xs text-slate-500 mb-2"><span class="iconify w-3.5 h-3.5" data-icon="lucide:calendar"></span>5 Mei 2025</div><h3 class="font-semibold text-lg mb-2 group-hover:text-primary-600 transition-colors">Bakti Sosial dan Santunan Anak Yatim</h3><p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">OSIS mengadakan kegiatan bakti sosial sebagai wujud kepedulian terhadap sesama.</p></div>
+                </article>
+                <article class="news-card bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover group" data-category="pengumuman">
+                    <div class="relative overflow-hidden aspect-video"><img src="https://picsum.photos/seed/news4/600/400.jpg" alt="News" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><span class="absolute top-3 left-3 bg-primary-600 text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">Pengumuman</span></div>
+                    <div class="p-5"><div class="flex items-center gap-2 text-xs text-slate-500 mb-2"><span class="iconify w-3.5 h-3.5" data-icon="lucide:calendar"></span>28 Apr 2025</div><h3 class="font-semibold text-lg mb-2 group-hover:text-primary-600 transition-colors">Jadwal UTS Semester Genap 2025</h3><p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Pengumuman jadwal UTS semester genap tahun ajaran 2024/2025.</p></div>
+                </article>
+                <article class="news-card bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover group" data-category="kegiatan">
+                    <div class="relative overflow-hidden aspect-video"><img src="https://picsum.photos/seed/news5/600/400.jpg" alt="News" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><span class="absolute top-3 left-3 bg-green-600 text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">Kegiatan</span></div>
+                    <div class="p-5"><div class="flex items-center gap-2 text-xs text-slate-500 mb-2"><span class="iconify w-3.5 h-3.5" data-icon="lucide:calendar"></span>20 Apr 2025</div><h3 class="font-semibold text-lg mb-2 group-hover:text-primary-600 transition-colors">Kunjungan Belajar ke Museum Daerah</h3><p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Siswa kelas VIII melakukan kunjungan belajar ke museum sebagai kegiatan P5.</p></div>
+                </article>
+                <article class="news-card bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover group" data-category="prestasi">
+                    <div class="relative overflow-hidden aspect-video"><img src="https://picsum.photos/seed/news6/600/400.jpg" alt="News" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"><span class="absolute top-3 left-3 bg-accent-500 text-white text-[10px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full">Prestasi</span></div>
+                    <div class="p-5"><div class="flex items-center gap-2 text-xs text-slate-500 mb-2"><span class="iconify w-3.5 h-3.5" data-icon="lucide:calendar"></span>15 Apr 2025</div><h3 class="font-semibold text-lg mb-2 group-hover:text-primary-600 transition-colors">Juara 3 Lomba Pidato Bahasa Inggris</h3><p class="text-sm text-slate-600 dark:text-slate-400 line-clamp-2">Rambu A. Luku meraih juara 3 lomba pidato Bahasa Inggris tingkat Kabupaten.</p></div>
+                </article>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ===================== GALERI ===================== -->
+<div id="page-galeri" class="page">
+    <div class="bg-gradient-to-br from-primary-800 to-primary-950 text-white py-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <nav class="breadcrumb text-sm text-primary-200 mb-4 flex items-center gap-2">
+                <a href="#" onclick="showPage('beranda')" class="hover:text-white">Beranda</a><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span><span class="text-white">Galeri</span>
+            </nav>
+            <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight">Galeri</h1>
+        </div>
+    </div>
+
+    <section class="py-16 lg:py-20 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <!-- Filter -->
+            <div class="flex gap-2 flex-wrap mb-8">
+                <button class="px-4 py-2 bg-primary-700 text-white text-sm font-medium rounded-lg galeri-filter active" onclick="filterGaleri('all',this)">Semua</button>
+                <button class="px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 galeri-filter" onclick="filterGaleri('upacara',this)">Upacara</button>
+                <button class="px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 galeri-filter" onclick="filterGaleri('pembelajaran',this)">Pembelajaran</button>
+                <button class="px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 galeri-filter" onclick="filterGaleri('olahraga',this)">Olahraga</button>
+                <button class="px-4 py-2 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 text-sm font-medium rounded-lg border border-slate-200 dark:border-slate-700 galeri-filter" onclick="filterGaleri('seni',this)">Seni & Budaya</button>
+            </div>
+
+            <!-- Photo Grid -->
+            <div id="galeriGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div class="galeri-item rounded-xl overflow-hidden aspect-square cursor-pointer group" data-category="upacara" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/seed/gal-upacara1/500/500.jpg" alt="Upacara" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="galeri-item rounded-xl overflow-hidden aspect-square cursor-pointer group" data-category="pembelajaran" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/seed/gal-belajar1/500/500.jpg" alt="Belajar" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="galeri-item rounded-xl overflow-hidden aspect-square cursor-pointer group" data-category="olahraga" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/seed/gal-olahraga1/500/500.jpg" alt="Olahraga" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="galeri-item rounded-xl overflow-hidden aspect-square cursor-pointer group" data-category="seni" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/seed/gal-seni1/500/500.jpg" alt="Seni" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="galeri-item rounded-xl overflow-hidden aspect-square cursor-pointer group" data-category="upacara" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/seed/gal-upacara2/500/500.jpg" alt="Upacara" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="galeri-item rounded-xl overflow-hidden aspect-square cursor-pointer group" data-category="pembelajaran" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/seed/gal-belajar2/500/500.jpg" alt="Belajar" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="galeri-item rounded-xl overflow-hidden aspect-square cursor-pointer group" data-category="olahraga" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/seed/gal-olahraga2/500/500.jpg" alt="Olahraga" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+                <div class="galeri-item rounded-xl overflow-hidden aspect-square cursor-pointer group" data-category="seni" onclick="openLightbox(this)">
+                    <img src="https://picsum.photos/seed/gal-seni2/500/500.jpg" alt="Seni" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+            </div>
+
+            <!-- Video Section -->
+            <div class="mt-16">
+                <h2 class="text-2xl font-bold mb-6">Galeri Video</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover">
+                        <div class="relative aspect-video bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                            <img src="https://picsum.photos/seed/video1/600/340.jpg" alt="Video" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center"><div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center"><span class="iconify w-6 h-6 text-primary-700 ml-1" data-icon="lucide:play"></span></div></div>
+                        </div>
+                        <div class="p-4"><h4 class="font-semibold text-sm">Profil SMPN Satu Atap Haka</h4><p class="text-xs text-slate-500 mt-1">3:45 • 1,2K ditonton</p></div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover">
+                        <div class="relative aspect-video bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                            <img src="https://picsum.photos/seed/video2/600/340.jpg" alt="Video" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center"><div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center"><span class="iconify w-6 h-6 text-primary-700 ml-1" data-icon="lucide:play"></span></div></div>
+                        </div>
+                        <div class="p-4"><h4 class="font-semibold text-sm">Dokumentasi Pentasar Seni 2024</h4><p class="text-xs text-slate-500 mt-1">5:12 • 856 ditonton</p></div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 card-hover">
+                        <div class="relative aspect-video bg-slate-200 dark:bg-slate-800 flex items-center justify-center">
+                            <img src="https://picsum.photos/seed/video3/600/340.jpg" alt="Video" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-black/40 flex items-center justify-center"><div class="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center"><span class="iconify w-6 h-6 text-primary-700 ml-1" data-icon="lucide:play"></span></div></div>
+                        </div>
+                        <div class="p-4"><h4 class="font-semibold text-sm">Kegiatan Pramuka Tahun 2024</h4><p class="text-xs text-slate-500 mt-1">4:30 • 645 ditonton</p></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ===================== SPMB ===================== -->
+<div id="page-spmb" class="page">
+    <div class="bg-gradient-to-br from-accent-600 via-accent-700 to-primary-900 text-white py-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <nav class="breadcrumb text-sm text-accent-200 mb-4 flex items-center gap-2">
+                <a href="#" onclick="showPage('beranda')" class="hover:text-white">Beranda</a><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span><span class="text-white">SPMB</span>
+            </nav>
+            <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight">Pendaftaran Peserta Didik Baru</h1>
+            <p class="text-accent-100 mt-3 text-lg">Tahun Ajaran 2025/2026</p>
+        </div>
+    </div>
+
+    <section class="py-16 lg:py-20 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <!-- Info Boxes -->
+            <div class="grid md:grid-cols-3 gap-6 mb-16">
+                <div class="bg-primary-50 dark:bg-primary-900/20 rounded-2xl p-6 border border-primary-100 dark:border-primary-800 text-center">
+                    <span class="iconify w-10 h-10 text-primary-600 mx-auto mb-3" data-icon="lucide:calendar-range"></span>
+                    <h4 class="font-bold text-lg mb-1">Periode Pendaftaran</h4>
+                    <p class="text-2xl font-extrabold text-primary-700 dark:text-primary-400">1 Apr - 31 Mei 2025</p>
+                </div>
+                <div class="bg-accent-50 dark:bg-accent-900/20 rounded-2xl p-6 border border-accent-100 dark:border-accent-800 text-center">
+                    <span class="iconify w-10 h-10 text-accent-600 mx-auto mb-3" data-icon="lucide:users"></span>
+                    <h4 class="font-bold text-lg mb-1">Kuota Peserta Didik</h4>
+                    <p class="text-2xl font-extrabold text-accent-700 dark:text-accent-400">120 Siswa</p>
+                </div>
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-2xl p-6 border border-green-100 dark:border-green-800 text-center">
+                    <span class="iconify w-10 h-10 text-green-600 mx-auto mb-3" data-icon="lucide:badge-check"></span>
+                    <h4 class="font-bold text-lg mb-1">Pengumuman</h4>
+                    <p class="text-2xl font-extrabold text-green-700 dark:text-green-400">15 Juni 2025</p>
+                </div>
+            </div>
+
+            <!-- Persyaratan -->
+            <div class="mb-16">
+                <h2 class="text-3xl font-bold tracking-tight mb-6">Persyaratan Pendaftaran</h2>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+                        <h4 class="font-semibold mb-4 flex items-center gap-2"><span class="iconify w-5 h-5 text-primary-600" data-icon="lucide:file-text"></span> Dokumen Wajib</h4>
+                        <ul class="space-y-2 text-sm text-slate-600 dark:text-slate-400">
+                            <li class="flex gap-2"><span class="iconify w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" data-icon="lucide:check"></span>Fotokopi Akta Kelahiran</li>
+                            <li class="flex gap-2"><span class="iconify w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" data-icon="lucide:check"></span>Fotokopi Kartu Keluarga</li>
+                            <li class="flex gap-2"><span class="iconify w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" data-icon="lucide:check"></span>Ijazah/Surat Kelulusan SD/MI</li>
+                            <li class="flex gap-2"><span class="iconify w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" data-icon="lucide:check"></span>SHUN (Surat Hasil Ujian Nasional)</li>
+                            <li class="flex gap-2"><span class="iconify w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" data-icon="lucide:check"></span>Pas foto 3x4 (4 lembar)</li>
+                            <li class="flex gap-2"><span class="iconify w-4 h-4 text-green-500 flex-shrink-0 mt-0.5" data-icon="lucide:check"></span>Surat Keterangan Sehat</li>
+                        </ul>
+                    </div>
+                    <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 border border-slate-200 dark:border-slate-700">
+                        <h4 class="font-semibold mb-4 flex items-center gap-2"><span class="iconify w-5 h-5 text-accent-600" data-icon="lucide:clock"></span> Jadwal SPMB</h4>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700"><span>Pendaftaran Online</span><span class="font-semibold">1 Apr - 31 Mei 2025</span></div>
+                            <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700"><span>Verifikasi Dokumen</span><span class="font-semibold">1 - 7 Jun 2025</span></div>
+                            <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700"><span>Seleksi</span><span class="font-semibold">8 - 14 Jun 2025</span></div>
+                            <div class="flex justify-between py-2 border-b border-slate-200 dark:border-slate-700"><span>Pengumuman</span><span class="font-semibold text-green-600">15 Jun 2025</span></div>
+                            <div class="flex justify-between py-2"><span>Daftar Ulang</span><span class="font-semibold text-accent-600">16 - 28 Jun 2025</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulir Pendaftaran -->
+            <div class="bg-slate-50 dark:bg-slate-800 rounded-2xl p-6 lg:p-8 border border-slate-200 dark:border-slate-700">
+                <h2 class="text-2xl font-bold tracking-tight mb-2">Formulir Pendaftaran Online</h2>
+                <p class="text-sm text-slate-500 mb-6">Isi data dengan lengkap dan benar. Field bertanda <span class="text-red-500">*</span> wajib diisi.</p>
+                <form id="spmbForm" onsubmit="handleSpmbSubmit(event)" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
+                            <input type="text" required class="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">NISN <span class="text-red-500">*</span></label>
+                            <input type="text" required class="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Tempat, Tanggal Lahir <span class="text-red-500">*</span></label>
+                            <input type="text" required placeholder="contoh: Waingapu, 15-03-2012" class="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Jenis Kelamin <span class="text-red-500">*</span></label>
+                            <select required class="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                <option value="">-- Pilih --</option>
+                                <option>Laki-laki</option>
+                                <option>Perempuan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Asal Sekolah <span class="text-red-500">*</span></label>
+                            <input type="text" required class="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">No. HP Orang Tua <span class="text-red-500">*</span></label>
+                            <input type="tel" required class="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Alamat Lengkap <span class="text-red-500">*</span></label>
+                        <textarea required rows="3" class="w-full px-4 py-2.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Upload Dokumen (Akta, KK, Ijazah - PDF/JPG, maks 5MB)</label>
+                        <div class="border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-xl p-6 text-center hover:border-primary-400 transition-colors cursor-pointer" onclick="document.getElementById('fileUpload').click()">
+                            <span class="iconify w-10 h-10 text-slate-400 mx-auto mb-2" data-icon="lucide:upload-cloud"></span>
+                            <p class="text-sm text-slate-500">Klik atau seret file ke sini</p>
+                            <input type="file" id="fileUpload" multiple accept=".pdf,.jpg,.jpeg,.png" class="hidden" onchange="handleFileUpload(this)">
+                            <p id="fileNames" class="text-xs text-primary-600 mt-2"></p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-2">
+                        <input type="checkbox" required id="agreeSpmb" class="mt-1 rounded">
+                        <label for="agreeSpmb" class="text-sm text-slate-600 dark:text-slate-400">Saya menyatakan data yang saya isi adalah benar dan dapat dipertanggungjawabkan. <span class="text-red-500">*</span></label>
+                    </div>
+                    <button type="submit" class="w-full sm:w-auto px-8 py-3 bg-accent-500 hover:bg-accent-600 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-accent-500/25 flex items-center justify-center gap-2">
+                        <span class="iconify w-5 h-5" data-icon="lucide:send"></span> Kirim Pendaftaran
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ===================== KONTAK ===================== -->
+<div id="page-kontak" class="page">
+    <div class="bg-gradient-to-br from-primary-800 to-primary-950 text-white py-16 lg:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <nav class="breadcrumb text-sm text-primary-200 mb-4 flex items-center gap-2">
+                <a href="#" onclick="showPage('beranda')" class="hover:text-white">Beranda</a><span class="iconify w-3 h-3" data-icon="lucide:chevron-right"></span><span class="text-white">Kontak</span>
+            </nav>
+            <h1 class="text-4xl lg:text-5xl font-extrabold tracking-tight">Hubungi Kami</h1>
+        </div>
+    </div>
+
+    <section class="py-16 lg:py-20 bg-slate-50 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Contact Form -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 lg:p-8 border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <h2 class="text-2xl font-bold mb-6">Kirim Pesan</h2>
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
+                            <input type="text" required class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Email <span class="text-red-500">*</span></label>
+                            <input type="email" required class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Subjek <span class="text-red-500">*</span></label>
+                            <select required class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500">
+                                <option value="">-- Pilih Subjek --</option>
+                                <option>Informasi Umum</option>
+                                <option>SPMB / Pendaftaran</option>
+                                <option>Akademik</option>
+                                <option>Kesiswaan</option>
+                                <option>Saran & Masukan</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Pesan <span class="text-red-500">*</span></label>
+                            <textarea required rows="5" class="w-full px-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"></textarea>
+                        </div>
+                        <button type="submit" class="px-6 py-3 bg-primary-700 hover:bg-primary-800 text-white font-semibold rounded-xl transition-all duration-300 flex items-center gap-2">
+                            <span class="iconify w-5 h-5" data-icon="lucide:send"></span> Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info + Map -->
+                <div class="space-y-6">
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
+                        <h3 class="font-bold text-lg mb-4">Informasi Kontak</h3>
+                        <div class="space-y-4">
+                            <div class="flex gap-3"><span class="iconify w-5 h-5 text-primary-600 flex-shrink-0" data-icon="lucide:map-pin"></span><div><p class="font-medium text-sm">Alamat</p><p class="text-sm text-slate-500">Jl. Pendidikan No. 01, Desa Haka, Kec. Haka, Kab. Sumba Timur, NTT 87113</p></div></div>
+                            <div class="flex gap-3"><span class="iconify w-5 h-5 text-primary-600 flex-shrink-0" data-icon="lucide:phone"></span><div><p class="font-medium text-sm">Telepon</p><p class="text-sm text-slate-500">(0380) 8321-456</p></div></div>
+                            <div class="flex gap-3"><span class="iconify w-5 h-5 text-primary-600 flex-shrink-0" data-icon="lucide:mail"></span><div><p class="font-medium text-sm">Email</p><p class="text-sm text-slate-500">info@smpn1ataphaka.sch.id</p></div></div>
+                            <div class="flex gap-3"><span class="iconify w-5 h-5 text-accent-600 flex-shrink-0" data-icon="lucide:clock"></span><div><p class="font-medium text-sm">Jam Operasional</p><p class="text-sm text-slate-500">Senin - Sabtu: 07.00 - 14.00 WITA</p></div></div>
+                        </div>
+                    </div>
+                    <!-- Social Media -->
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800">
+                        <h3 class="font-bold text-lg mb-4">Media Sosial</h3>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center hover:bg-blue-700 transition-colors"><span class="iconify w-5
